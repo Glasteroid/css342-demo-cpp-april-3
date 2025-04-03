@@ -4,9 +4,10 @@ bool is_power_of_2(int);
 bool recur_is_power_of_2(int);
 bool check_prime_num(int);
 void reduce_frac(std::string &);
+void test();
 
 int main() {
-
+    test();
     int num = 4;
     bool result = is_power_of_2(num);
     bool rec_result = recur_is_power_of_2(num);
@@ -40,9 +41,20 @@ int main() {
     std::cout << std::endl;
 
     // test for reduce fractions method
-    std::string fraction = "12/6";
+    std::string fraction = "-6/8";
     reduce_frac(fraction);
 }
+
+class Fraction {
+public:
+    int numerator;
+    int denominator;
+
+    Fraction(int numerator, int denominator) : numerator(numerator), denominator(denominator) {
+    }
+};
+
+Fraction reduce(Fraction input);
 
 bool is_power_of_2(int num) {
     // keep dividing by 2 until either 1 or non-divisible
@@ -113,6 +125,10 @@ void reduce_frac(std::string &fraction) {
     } else {
         printf("%d/%d", numerator/gcd, denominator/gcd);
     }
+
+}
+
+void test() {
 
 }
 
