@@ -19,10 +19,25 @@ public:
 
     // operator overload
     bool operator==(Fraction &other) {
-        this->numerator == other.numerator &&
+        return this->numerator == other.numerator &&
             this->denominator == other.denominator;
     }
 };
+
+Fraction reduce(Fraction input) {
+    int divider = 2;
+    while (divider <= input.numerator and divider <= input.denominator) {
+        if (input.numerator % divider == 0 &&
+            input.denominator % divider == 0) {
+            input.numerator /= divider;
+            input.denominator /= divider;
+            continue;
+        }
+        divider++;
+    }
+
+    return input;
+}
 
 int main() {
     test();
@@ -62,10 +77,6 @@ int main() {
     // test for reduce fractions method
     std::string fraction = "-6/8";
     reduce_frac(fraction);
-}
-
-Fraction reduce(Fraction input) {
-    return input; // TODO: replace this with the real code
 }
 
 bool is_power_of_2(int num) {
