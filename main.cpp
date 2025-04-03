@@ -6,8 +6,27 @@ bool check_prime_num(int);
 void reduce_frac(std::string &);
 void test();
 
+class Fraction {
+public:
+    int numerator;
+    int denominator;
+
+    Fraction(int numerator, int denominator) : numerator(numerator), denominator(denominator) {}
+
+    std::string to_string() {
+        return std::to_string(numerator) + "/" + std::to_string(denominator);
+    }
+
+    // operator overload
+    bool operator==(Fraction &other) {
+        this->numerator == other.numerator &&
+            this->denominator == other.denominator;
+    }
+};
+
 int main() {
     test();
+
     int num = 4;
     bool result = is_power_of_2(num);
     bool rec_result = recur_is_power_of_2(num);
@@ -45,16 +64,9 @@ int main() {
     reduce_frac(fraction);
 }
 
-class Fraction {
-public:
-    int numerator;
-    int denominator;
-
-    Fraction(int numerator, int denominator) : numerator(numerator), denominator(denominator) {
-    }
-};
-
-Fraction reduce(Fraction input);
+Fraction reduce(Fraction input) {
+    return input; // TODO: replace this with the real code
+}
 
 bool is_power_of_2(int num) {
     // keep dividing by 2 until either 1 or non-divisible
@@ -129,6 +141,36 @@ void reduce_frac(std::string &fraction) {
 }
 
 void test() {
+    // reduce given fraction to minimum terms
+    // 1/2 -> 1/2
+    // 2/4 -> 1/2
+    // 4/2 -> 2/1
+    // 6/8 -> 3/4
+
+    // given an input, the actual output should match the expected output
+    Fraction inputs[4] = {Fraction(1,2),
+                        Fraction(2,4),
+                        Fraction(4,2),
+                        Fraction(6,8)};
+
+    Fraction outputs[4] = {Fraction(1,2),
+                        Fraction(1,2),
+                        Fraction(2,1),
+                        Fraction(3,4)};
+
+    for (int i = 0; i < 4; i++) {
+        Fraction input = inputs[i];
+        Fraction expect = outputs[i];
+
+        Fraction actual = reduce(input);
+
+        // compare expected vs actual
+        if (expect == actual) {
+            std::cout << "PASS!" << std::endl;
+        } else {
+            std::cout << "FAIL! case is: " << input.to_string() << std::endl;
+        }
+    }
 
 }
 
