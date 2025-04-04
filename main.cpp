@@ -40,9 +40,8 @@ Fraction reduce(Fraction input) {
 }
 
 int main() {
-    test();
 
-    int num = 4;
+    /*int num = 4;
     bool result = is_power_of_2(num);
     bool rec_result = recur_is_power_of_2(num);
 
@@ -67,20 +66,19 @@ int main() {
     // test for prime number
     int num_2 = 11;
     if (check_prime_num(num_2)) {
-        std::cout << "PASS" << std::endl;
+        std::cout << "PASS!" << std::endl;
     } else {
-        std::cout << "FAIL" << std::endl;
+        std::cout << "FAIL!" << std::endl;
     }
 
-    std::cout << std::endl;
+    std::cout << std::endl;*/
 
-    // test for reduce fractions method
-    std::string fraction = "-6/8";
-    reduce_frac(fraction);
+    test();
+
 }
 
 bool is_power_of_2(int num) {
-    // keep dividing by 2 until either 1 or non-divisible
+    if (num < 2) return false;
     while (num!=1) {
         if (num%2==0) { // divisible by 2
             num = num/2;
@@ -93,12 +91,14 @@ bool is_power_of_2(int num) {
 }
 
 bool recur_is_power_of_2(int num) {
-    if (num == 1) {
+    if (num < 2) return false;
+
+    if (num == 2) {
         return true;
     }
 
     if (num % 2 == 0) {
-        return is_power_of_2(num/2);
+        return recur_is_power_of_2(num/2);
     }
 
     return false;
@@ -152,6 +152,34 @@ void reduce_frac(std::string &fraction) {
 }
 
 void test() {
+    int inputs[4] = {1, 2, 3, 4};
+
+    for (int i = 0; i < 4; i++) {
+        if (is_power_of_2(inputs[i])) {
+            printf("%d is divisible by 2", inputs[i]);
+        } else {
+            printf("%d is not divisible by 2", inputs[i]);
+        }
+
+        std::cout << std::endl;
+
+        if (recur_is_power_of_2(inputs[i])) {
+            printf("%d is divisible by 2", inputs[i]);
+        } else {
+            printf("%d is not divisible by 2", inputs[i]);
+        }
+
+        std::cout << std::endl;
+
+        if (check_prime_num(inputs[i])) {
+            std::cout << "PASS!" << std::endl;
+        } else {
+            std::cout << "FAIL!" << std::endl;
+        }
+
+        std::cout << std::endl;
+    }
+
     // reduce given fraction to minimum terms
     // 1/2 -> 1/2
     // 2/4 -> 1/2
@@ -159,19 +187,19 @@ void test() {
     // 6/8 -> 3/4
 
     // given an input, the actual output should match the expected output
-    Fraction inputs[4] = {Fraction(1,2),
+    Fraction fraction_inputs[4] = {Fraction(1,2),
                         Fraction(2,4),
                         Fraction(4,2),
                         Fraction(6,8)};
 
-    Fraction outputs[4] = {Fraction(1,2),
+    Fraction fraction_outputs[4] = {Fraction(1,2),
                         Fraction(1,2),
                         Fraction(2,1),
                         Fraction(3,4)};
 
     for (int i = 0; i < 4; i++) {
-        Fraction input = inputs[i];
-        Fraction expect = outputs[i];
+        Fraction input = fraction_inputs[i];
+        Fraction expect = fraction_outputs[i];
 
         Fraction actual = reduce(input);
 
