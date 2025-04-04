@@ -40,41 +40,7 @@ Fraction reduce(Fraction input) {
 }
 
 int main() {
-
-    /*int num = 4;
-    bool result = is_power_of_2(num);
-    bool rec_result = recur_is_power_of_2(num);
-
-    // test for loop-method to check if number is a power of two
-    if (result == true) {
-        printf("%d is divisible by 2", num);
-    } else {
-        printf("%d is not divisible by 2", num);
-    }
-
-    std::cout << std::endl;
-
-    // test for non-loop (recursion) method to check if number is power of two
-    if (rec_result == true) {
-        printf("%d is divisible by 2", num);
-    } else {
-        printf("%d is not divisible by 2", num);
-    }
-
-    std::cout << std::endl;
-
-    // test for prime number
-    int num_2 = 11;
-    if (check_prime_num(num_2)) {
-        std::cout << "PASS!" << std::endl;
-    } else {
-        std::cout << "FAIL!" << std::endl;
-    }
-
-    std::cout << std::endl;*/
-
     test();
-
 }
 
 bool is_power_of_2(int num) {
